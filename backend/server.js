@@ -10,7 +10,7 @@ app.use(cors({
   origin: [
     'http://localhost:5173', 
     'http://localhost:5174',
-    'https://kk-job-portal.onrender.com' 
+    'https://kk-job-portal-frontend.onrender.com' 
   ],
   credentials: true
 }))
