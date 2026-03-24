@@ -7,7 +7,11 @@ require('dotenv').config()
 const app = express()
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: [
+    'http://localhost:5173', 
+    'http://localhost:5174',
+    'https://kk-job-portal.onrender.com' 
+  ],
   credentials: true
 }))
 app.use(express.json())
@@ -17,13 +21,6 @@ app.use('/api/auth', require('./routes/authRoutes'))
 app.use('/api/jobs', require('./routes/jobRoutes'))
 app.use('/api/apply', require('./routes/applyRoutes'))
 
-// Static Files
-app.use(express.static(path.join(__dirname, '../frontend/dist')))
-
-// ✅ Fixed wildcard route
-app.get(/(.*)/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'))
-})
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB connected'))
